@@ -1,0 +1,73 @@
+import tkinter as tk 
+from tkinter import messagebox
+from tkinter.ttk import Combobox
+form=tk.Tk()
+
+form.title("internet Arıza")
+form.geometry("350x350+300+300")
+form.config(bg="black")
+
+
+lbl_baslık=tk.Label(form,text="İnternet Şikayet Uygulaması",bg="red",font="Times 15 bold")
+lbl_baslık.place(x=50,y=10) # BAŞLIK
+
+
+lbl_User=tk.Label(form,text="Kullanıcı Adı :",fg="white",bg="black",font="Times 15 italic")
+lbl_User.place(x=30,y=100)
+lbl_Pswd=tk.Label(form,text="Şifre :",fg="white",bg="black",font="Times 15 italic")
+lbl_Pswd.place(x=30,y=155)
+
+login_entry=tk.Entry(form)
+login_entry.place(x=165,y=100)   
+Pswd_entry=tk.Entry(form,show="*")
+Pswd_entry.place(x=165,y=155)
+
+
+
+def login():
+    if login_entry.get()=="s" and Pswd_entry.get()=="s":
+        msg=messagebox.showinfo("tebrikler",message="girişiniz başarılı") 
+        if msg=="ok":
+            son=tk.Toplevel()
+            son.title("Arıza Bildirim Formu")
+            son.geometry("400x400")
+            son.config(bg="orange")
+            baslik_lbl=tk.Label(son,text="Arıza Bildirim Formu",fg="purple",bg="Red",font="Times 20 bold").place(x=20,y=250)
+            lbl_Ad=tk.Label(son,text="Adınız Soyadınız :",bg="orange",fg="black",font="Times 15 bold").place(x=10,y=20)
+            lbl_tckimlik=tk.Label(son,text="TC Kimlik NO :",fg="red",bg="orange",font="Times 15 bold").place(x=10,y=50)
+            lbl_Modem=tk.Label(son,text="Modem Tipi :",bg="orange",fg="green",font="Times 15 bold").place(x=10,y=70)
+            lbl_Arıza=tk.Label(son,text="Arıza Tipi :",fg="purple",bg="orange",font="Times 15 bold").place(x=10,y=100)
+            lbl_adres=tk.Label(son,text="Adres :",fg="yellow",bg="orange",font="Times 15 bold").place(x=10,y=125)
+            lbl_Mail=tk.Label(son,text="E Posta :",fg="purple",bg="orange",font="Times 15 bold").place(x=10,y=150)
+            ad_entry=tk.Entry(son).place(x=180,y=20)
+            tc_entry=tk.Entry(son).place(x=180,y=50)
+            liste=["tpm","klm","mal"]
+            cbx_modem=Combobox(son,values=liste).place(x=180,y=80) # COMBOBOX KULLANIMI BU ŞEKİLDEDİR DUYRULUR
+            liste1=["Wifi bozuk","güçlü değil","nasıl bi internet bu","diğeri daha güzeldi","verdiğim para değmedi"]
+            cbx_arıza=Combobox(son,values=liste1).place(x=180,y=105)
+            adres_entry=tk.Entry(son).place(x=180,y=130)
+            mail_entry=tk.Entry(son).place(x=180,y=150)
+            # def olustur():
+            #     kosul=TcDogrulama.Tc(tc_entry.get())
+            #     if kosul==True:
+            #         msgm=messagebox.showinfo("Başarıyla oluştu",message="Arıza Bildiriminiz gerçekleşti")
+            #     else:
+            #         msgm=messagebox.askretrycancel("Başarısız",message="tc yanlış")
+            btn_Create=tk.Button(son,text="Başvuru Oluştur",fg="black",bg="white",font="Times 10 bold").place(x=200,y=200)
+            
+
+    # else:
+    #     msg=messagebox.askyesno("üzgünüz",message="hatalı giriş yaptın veya kullanıcı adı ve şifre yamadınız ")
+    #     msg=messagebox.askretrycancel("sana diyom",message=" iptale bas")
+    #     msg=messagebox.askquestion("güzelim",message="yetersiz karakter")
+def iptal():
+    form.quit()
+
+
+
+btn_login=tk.Button(form,text="Giriş",activebackground="green",font="Times 10 bold",command=login).place(x=75,y=200,width=60)
+btn_cancel=tk.Button(form,text="İptal",activebackground="red",font="Times 10 bold",command=iptal).place(x=175,y=200,width=60)
+
+
+
+form.mainloop() 
