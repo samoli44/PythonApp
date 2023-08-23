@@ -1,0 +1,52 @@
+import tkinter as tk
+
+form=tk.Tk()
+form.geometry("500x500+400+100")
+form.title("Pizza Siparis Programı")
+
+entry1=tk.StringVar()
+entry2=tk.StringVar()
+baslik=tk.Label(form,text="Pizza Sipariş Programına Hoşgeldiniz",fg="red",bg="orange",font="Times 15 bold").pack()
+lbl_ad=tk.Label(form,text="Ad-Soyad:",fg="red",bg="black",font="Times 10 bold").place(x=10,y=40)
+lbl_boyut=tk.Label(form,text="Boyut:",fg="green",bg="blue",font="Times 10 bold").place(x=10,y=80)
+lbl_icindekiler=tk.Label(form,text="İçindekiler",fg="white",bg="green",font="Times 10 bold").place(x=10,y=120)
+lbl_adres=tk.Label(form,text="Adres",fg="yellow",bg="orange",font="Times 10 bold").place(x=10,y=160)
+
+entry_ad=tk.Entry(textvariable=entry1).place(x=100,y=40)
+entry_adres=tk.Entry(textvariable=entry2).place(x=100,y=155)
+
+deger=tk.StringVar()
+boyut=tk.StringVar()
+
+rdbuton_small=tk.Radiobutton(form,text="küçük",activebackground="red",value="küçük boy",variable=boyut).place(x=100,y=80)
+rdbuton_middle=tk.Radiobutton(form,text="Orta",activebackground="blue",value="orta boy",variable=boyut).place(x=200,y=80)
+rdbuton_big=tk.Radiobutton(form,text="Büyük",activebackground="purple",value="büyük boy",variable=boyut).place(x=300,y=80)
+
+deger1=tk.StringVar()
+deger2=tk.StringVar()
+deger3=tk.StringVar()
+
+papper=tk.Checkbutton(form,text="biber",activebackground="blue",variable=deger1,onvalue="biberli").place(x=100,y=115)
+sweetcorn=tk.Checkbutton(form,text="mısır",activebackground="yellow",variable=deger2,onvalue="mısırlı").place(x=200,y=115)
+bittersauce=tk.Checkbutton(form,text="acı sos",activebackground="red",variable=deger3,onvalue="acısoslu").place(x=300,y=115)
+
+def orderit():
+    lbl_bilgi=tk.Label(form,text="Sipariş Bilgileri",fg="black",bg="red",font="Times 15 bold").place(x=100,y=250)
+    lbl_ad=tk.Label(form,text="Ad-Soyad",fg="orange",bg="black",font="Times 10 bold").place(x=10,y=300)
+    lbl_boyut=tk.Label(form,text="Boyut",fg="black",bg="green",font="Times 10 bold").place(x=10,y=340)
+    lbl_icindekiler=tk.Label(form,text="içindekiler",fg="green",bg="purple",font="Times 10 bold").place(x=10,y=380)
+    lbl_adres=tk.Label(form,text="Adres",bg="yellow",fg="red",font="Times 10 bold").place(x=10,y=420)
+    
+    lbl_ad1=tk.Label(form,text=entry1.get(),fg="black",font="Times 10 bold").place(x=100,y=300)
+    lbl_boyut1=tk.Label(form,text=boyut.get(),fg="blue",font="Times 10 bold").place(x=100,y=340)
+    lbl_icindekiler1=tk.Label(form,text=deger1.get()+" "+deger2.get()+" "+deger3.get() +" ",fg="purple",font="Times 10 bold").place(x=100,y=380)
+    lbl_adres1=tk.Label(form,text=entry2.get(),fg="orange",font="Times 10 bold").place(x=100,y=420)
+order=tk.Button(form,text="Sipariş ver",activebackground="green",command=orderit).place(x=150,y=200)
+
+def cancel1():
+    form.quit() # PENCEREYİ KAPATIR
+cancel0=tk.Button(form,text="iptal et ve kapat",activebackground="red",command=cancel1).place(x=300,y=200)
+
+# SİPARİŞ BİLGİLERİ
+
+form.mainloop()
